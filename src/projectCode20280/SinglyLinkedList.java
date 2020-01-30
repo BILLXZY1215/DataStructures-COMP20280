@@ -2,6 +2,8 @@ package projectCode20280;
 
 import java.util.Iterator;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.Header;
+
 import sun.java2d.pipe.hw.ExtendedBufferCapabilities;
 
 public class SinglyLinkedList<E> implements List<E> {
@@ -24,10 +26,9 @@ public class SinglyLinkedList<E> implements List<E> {
 	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return head.next() == null;
 	}
-
+						
 	@Override
 	public E get(int i) {
 		// TODO Auto-generated method stub
