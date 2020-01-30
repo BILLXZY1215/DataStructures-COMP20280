@@ -7,7 +7,11 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.Header;
 import sun.java2d.pipe.hw.ExtendedBufferCapabilities;
 
 public class SinglyLinkedList<E> implements List<E> {
-
+	
+	private Node<E> head = null;
+	private Node<E> tail = null;
+	private int size = 0;
+	
 	private class Node<E> {
 		private E element;
 		private Node<E> next;
@@ -26,7 +30,7 @@ public class SinglyLinkedList<E> implements List<E> {
 	
 	@Override
 	public boolean isEmpty() {
-		return head.next() == null;
+		return size == 0;
 	}
 						
 	@Override
@@ -62,8 +66,14 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+            return null;
+        }
+        if (size == 0) {
+            tail = null;
+        }
+
+        return remove(head.getNext());
 	}
 
 	@Override
@@ -74,15 +84,30 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public void addFirst(E e) {
-		// TODO Auto-generated method stub
+		head= new Node<E>(e, head);
+		if (size == 0) {
+            tail = head;
+        }
+		size++;
 		
 	}
 
 	@Override
 	public void addLast(E e) {
-		// TODO Auto-generated method stub
+		Node<E> newNode = new Node<E>(e, null);
+
+        if (isEmpty()) {
+            head = newNode;
+        } else {
+            tail.setNext(newNode);
+        }
+        tail = newNode;
+        size++;
 		
 	}
+	
+
+    
 	
 	public static void main(String[] args) {
 		String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
