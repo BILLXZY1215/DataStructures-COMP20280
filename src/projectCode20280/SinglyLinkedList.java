@@ -2,10 +2,24 @@ package projectCode20280;
 
 import java.util.Iterator;
 
+import sun.java2d.pipe.hw.ExtendedBufferCapabilities;
+
 public class SinglyLinkedList<E> implements List<E> {
 
 	private class Node<E> {
-		/// TODO
+		private E element;
+		private Node<E> next;
+		
+		public Node(E e, Node<E> n) {
+			element = e;
+			next = n;
+		}
+		
+		//Accessor Methods
+		public E getElement() {return element;}
+		public Node<E> getNext() {return next;}
+		//Modifier Methods
+		public void setNext(Node<E> n) { next = n;}
 	}
 	
 	@Override
