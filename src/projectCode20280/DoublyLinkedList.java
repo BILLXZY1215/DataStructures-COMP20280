@@ -93,7 +93,12 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeLast() {
-		// TODO Auto-generated method stub
+		Node<E> toDelete = trailerNode.getPrev();
+		Node<E> predeccesor = toDelete.getPrev();
+		Node<E> successor = toDelete.getNext();
+		predeccesor.setNext(successor);
+		successor.setPrev(predeccesor);
+		size--;
 		return null;
 	}
 	
@@ -136,10 +141,10 @@ public class DoublyLinkedList<E> implements List<E> {
            
            ll.removeFirst();
            System.out.println(ll);
-/*
+
            ll.removeLast();
            System.out.println(ll);
-           
+           /*
            for(Integer e: ll) {
                    System.out.println("value: " + e);
            }*/
