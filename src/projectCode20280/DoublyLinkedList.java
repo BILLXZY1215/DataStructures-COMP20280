@@ -27,20 +27,29 @@ public class DoublyLinkedList<E> implements List<E> {
 	private Node<E> trailerNode;
 	private int size = 0;
 	
+	//constructor
+	public DoublyLinkedList( ) {
+		headerNode = new Node<>(null, null, null); // create header
+		trailerNode = new Node<>(null, headerNode, null); // trailer is preceded by header
+		headerNode.setNext(trailerNode); // header is followed by trailer
+	 }
+	
 	private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
-		// TODO
+		
+		Node<E> newest = new Node<>(e, predecessor, successor);
+		predecessor.setNext(newest);
+		successor.setPrev(newest);
+		size++;
 	}
 	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
@@ -71,8 +80,15 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		if (size != 0) {
+            headerNode = headerNode.next;
+            size--;
+        }
+ 
+        return null;
 	}
 
 	@Override
@@ -84,33 +100,49 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public void addFirst(E e) {
-		// TODO Auto-generated method stub
+		addBetween(e, headerNode, headerNode.getNext());
 		
 	}
 
 	@Override
 	public void addLast(E e) {
-		// TODO Auto-generated method stub
+		addBetween(e, trailerNode.getPrev(), trailerNode);
 		
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		String result = "[";
+        Node<E> current = headerNode.getNext();
+        while(current.getNext() != null){
+            result += current.getElement();
+            if(current.getNext().getNext() != null){
+                 result += "->";
+            }
+            current = current.getNext();
+        }
+        return "List: " + result + "]";	}
+
 	public static void main(String[] args) {
 		   DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();
            ll.addFirst(0);
            ll.addFirst(1);
+           ll.addLast(9);
            ll.addFirst(2);
            ll.addLast(-1);
            System.out.println(ll);
            
            ll.removeFirst();
            System.out.println(ll);
-
+/*
            ll.removeLast();
            System.out.println(ll);
            
            for(Integer e: ll) {
                    System.out.println("value: " + e);
-           }
+           }*/
 	}
 
 	
