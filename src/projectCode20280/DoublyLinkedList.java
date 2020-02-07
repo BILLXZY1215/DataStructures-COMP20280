@@ -4,9 +4,28 @@ import java.util.Iterator;
 
 public class DoublyLinkedList<E> implements List<E> {
 
-	private class Node<E> {
+	private static class Node<E> {
+		private E element;
+		private Node<E> prev;
+		private Node<E> next;
 		
+		public Node(E e, Node<E> p, Node<E> n) {
+			element = e;
+			prev = p;
+			next = n;
+		}
+		
+		//getters and setters
+		public E getElement() {return element;}
+		public Node<E> getPrev() { return prev;}
+		public Node<E> getNext() { return next;}
+		public void setPrev(Node<E> p) { prev = p; }
+		public void setNext(Node<E> n) { next = n;}
 	}
+	
+	private Node<E> headerNode;
+	private Node<E> trailerNode;
+	private int size = 0;
 	
 	private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
 		// TODO
