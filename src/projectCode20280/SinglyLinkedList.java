@@ -5,10 +5,9 @@ import java.util.Iterator;
 public class SinglyLinkedList<E> implements List<E> {
 	
 	private Node<E> head = null;
-	private Node<E> tail = null;
 	private int size = 0;
 	
-	private class Node<E> {
+	private static class Node<E> {
 		private E element;
 		private Node<E> next;
 		
@@ -132,9 +131,6 @@ public class SinglyLinkedList<E> implements List<E> {
 	@Override
 	public void addFirst(E e) {
 		head= new Node<E>(e, head);
-		if (size == 0) {
-            tail = head;
-        }
 		size++;
 		
 	}
