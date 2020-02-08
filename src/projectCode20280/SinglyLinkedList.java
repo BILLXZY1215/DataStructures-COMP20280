@@ -7,6 +7,9 @@ public class SinglyLinkedList<E> implements List<E> {
 	private Node<E> head = null;
 	private int size = 0;
 	
+	//empty constructor
+	public SinglyLinkedList() {}
+	
 	private static class Node<E> {
 		private E element;
 		private Node<E> next;
@@ -34,7 +37,7 @@ public class SinglyLinkedList<E> implements List<E> {
 	public E get(int i) {
 		
 		Node<E> curr = head;
-		for(int j = 1; j<i; j++) {
+		for(int j = 0; j<i; j++) {
 			
 			curr = curr.getNext();
 		}
@@ -56,6 +59,8 @@ public class SinglyLinkedList<E> implements List<E> {
 		
 		prevNode.setNext(newNode);
 		newNode.setNext(currNode);
+		
+		size++;
 	}
 
 	@Override
@@ -66,6 +71,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		
 		if (head.getElement().equals(i)) {
 			head= head.next;
+			size--;
 			return null;
 		}
 		
@@ -78,7 +84,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 		
 		prev.next = cur.next;
-		
+		size--;
 		return null;
 	}
 
@@ -124,6 +130,7 @@ public class SinglyLinkedList<E> implements List<E> {
 			second_last = second_last.next;			
 		}
 		second_last.next = null;
+		size--;
         
         return null;
 	}
@@ -205,6 +212,22 @@ public class SinglyLinkedList<E> implements List<E> {
 		
 		sll.addLast("j");
 		System.out.println(sll.toString());
+		System.out.println("*************************************");
+		
+		 SinglyLinkedList<Integer> ll = new SinglyLinkedList<Integer>();
+         ll.addFirst(0);
+         ll.addFirst(1);
+         ll.addLast(9);
+         ll.addFirst(2);
+         ll.addLast(-1);
+         System.out.println(ll);
+         System.out.println("******" + ll.get(2));
+         ll.add(2, 3);
+         System.out.println(ll);
+         System.out.println(ll.size());
+         ll.removeFirst();
+         System.out.println(ll);
+         System.out.println(ll.size());
 	}
 	}
 
