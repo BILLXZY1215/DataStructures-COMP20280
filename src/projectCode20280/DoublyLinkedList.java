@@ -54,25 +54,68 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		Node<E> currNode = headerNode.getNext();
+		for (int j = 0; j < i; j++) {
+			currNode = currNode.getNext();
+		}
+		return currNode.getElement();
 	}
 
 	@Override
 	public void add(int i, E e) {
-		// TODO Auto-generated method stub
+		Node<E> newNode = new Node<E>(e, null, null);
+		Node<E> currNode = headerNode.getNext();
+		
+		for (int j = 0; j < i; j++) {
+			currNode = currNode.getNext();
+		}
+		
+		Node<E> previousNode = currNode.getPrev();
+		
+		previousNode.setNext(newNode);
+		newNode.setNext(currNode);
+		newNode.setPrev(previousNode);
+		
+		size++;
 		
 	}
 
 	@Override
 	public E remove(int i) {
-		// TODO Auto-generated method stub
+		if (headerNode.getNext() == null) {
+			throw new RuntimeException("Cant Delete");
+		}
+		
+		Node<E> currNode = headerNode.getNext();
+				
+		for (int j = 0; j < i; j++) {
+			currNode = currNode.getNext();
+		}
+		
+		Node<E> predecessor = currNode.getPrev();
+		Node<E> successor = currNode.getNext();
+		
+		predecessor.setNext(successor);
+		successor.setPrev(predecessor);
+		
+		size--;
+		
 		return null;
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
+		if (isEmpty()) {
+			System.out.println("Empty List");
+		}
+		else {
+			Node<E> cuNode = headerNode.getNext();
+			while (cuNode.getNext()!=null) {
+				System.out.print(cuNode.getElement() + ", ");
+				cuNode = cuNode.getNext();
+			}
+		}
+		
 		return null;
 	}
 
@@ -106,13 +149,13 @@ public class DoublyLinkedList<E> implements List<E> {
 	@Override
 	public void addFirst(E e) {
 		addBetween(e, headerNode, headerNode.getNext());
-		
+				
 	}
 
 	@Override
 	public void addLast(E e) {
 		addBetween(e, trailerNode.getPrev(), trailerNode);
-		
+				
 	}
 	
 	
@@ -138,16 +181,38 @@ public class DoublyLinkedList<E> implements List<E> {
            ll.addFirst(2);
            ll.addLast(-1);
            System.out.println(ll);
-           
+           System.out.println("******" + ll.get(2));
+           ll.add(2, 3);
+           System.out.println(ll);
+           System.out.println(ll.size());
            ll.removeFirst();
            System.out.println(ll);
 
            ll.removeLast();
            System.out.println(ll);
+           ll.remove(1);
+           System.out.println(ll);
+           ll.iterator();
+           System.out.println(ll.size());
            /*
            for(Integer e: ll) {
                    System.out.println("value: " + e);
            }*/
+           
+           DoublyLinkedList<Integer> ll1 = new DoublyLinkedList<Integer>(); 
+           
+           ll1.addFirst(0); ll1.addFirst(1); ll1.addFirst(3); ll1.addFirst(4); ll1.addFirst(5); 
+           ll1.add(3, 2); 
+           System.out.println(ll1);
+           ll1.addFirst(-100); ll1.addLast(+100); System.out.println(ll1);
+           ll1.removeFirst(); ll1.removeLast(); System.out.println(ll1);
+           
+           ll1.removeFirst(); System.out.println(ll1);
+           ll1.removeLast(); System.out.println(ll1);
+           ll1.removeFirst(); System.out.println(ll1);
+           ll1.addFirst(9999); ll1.addFirst(8888); ll1.addFirst(7777);
+ 
+           System.out.println(ll1); System.out.println(ll1.get(0)); System.out.println(ll1.get(1)); System.out.println(ll1.get(2)); System.out.println(ll1);
 	}
 
 	
