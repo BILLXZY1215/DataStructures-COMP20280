@@ -1,7 +1,8 @@
 package projectCode20280;
 
 public class ArrayQueue<E> implements Queue<E> {
-
+	
+	private int size = 0;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -9,8 +10,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
