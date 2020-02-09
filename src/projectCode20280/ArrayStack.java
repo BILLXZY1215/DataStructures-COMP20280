@@ -2,39 +2,54 @@ package projectCode20280;
 
 public class ArrayStack<E> implements Stack<E> {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public static final int CAPACITY = 100;		//default array capacity
+	private E[] data;							//generic array for storage
+	private int t = -1;							//index of the top element of the stack
+	
+	
+	public ArrayStack() {this(CAPACITY);}		//constructs stack with default capacity	
+	
+	//constructor
+		public ArrayStack(int capacity) {
+			data = (E[]) new Object[capacity];
+		}
+	
 
 	@Override
-	public void push(E e) {
-		// TODO Auto-generated method stub
-		
+	public int size() {return (t+1);}
+
+	@Override
+	public boolean isEmpty() {return (t==-1);}
+
+	@Override
+	public void push(E e) throws IllegalArgumentException{
+		if (size() == data.length) {
+			throw new IllegalArgumentException("Stack is full");
+		}	
+		data[++t] = e;
 	}
 
 	@Override
 	public E top() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}		
+		return data[t];
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		E answer = data[t];
+		data[t] = null;
+		t--;
+		return answer;
 	}
 
+	//main
+	public static void main(String[] args) {
+
+	}
 }
