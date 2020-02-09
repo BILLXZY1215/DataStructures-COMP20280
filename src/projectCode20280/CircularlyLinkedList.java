@@ -80,7 +80,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 		Node<E> headNode = tail.getNext();
 		Node<E> cur = headNode;
 		Node<E> prev = null;
-		if (i == 0) {tail.setNext(headNode.getNext()); return headNode.getElement();}
+		if (i == 0) {tail.setNext(headNode.getNext()); size--;return headNode.getElement();}
 		else if (i==size-1) {System.out.print(removeLast()); return null;}
 		else {
 				
@@ -91,6 +91,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 			}
 			
 			prev.next = cur.next;
+			size--;
 		}
 		return cur.getElement();
 	}
