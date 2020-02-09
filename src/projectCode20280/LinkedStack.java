@@ -2,39 +2,29 @@ package projectCode20280;
 
 public class LinkedStack<E> implements Stack<E> {
 
+	private SinglyLinkedList<E> list = new SinglyLinkedList<>();
+	
+	//constructor
+	public LinkedStack() {};
+	
+	@Override
+	public int size() {return list.size();}
+
+	@Override
+	public boolean isEmpty() {return list.isEmpty();}
+
+	@Override
+	public void push(E e) {list.addFirst(e);}
+
+	@Override
+	public E top() {return list.get(0);}
+
+	@Override
+	public E pop() {return list.removeFirst();}
+	
+	//main
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void push(E e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public E top() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
