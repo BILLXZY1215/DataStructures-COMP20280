@@ -4,28 +4,54 @@ import java.util.Iterator;
 
 public class CircularlyLinkedList<E> implements List<E> {
 
-	private class Node<E> {
+	private static class Node<E> {
+		private E element;
+		private Node<E> next;
+
+		public Node(E e, Node<E> n) {
+
+			element = e;
+			next = n;
+		}
+
+		// accessors
+		public E getElement() { return element; }
+
+		public Node<E> getNext() { return next;	}
+
+		// modifier
+		public void setNext(Node<E> n) {next = n;}
 
 	}
+
+	private Node<E> tail = null;
+	private int size = 0;
+
+	// constructor
+	public CircularlyLinkedList() {}
+
+	// access methods
+	@Override
+	public int size() {	return size;}
 
 	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public boolean isEmpty() {return size == 0;}
 
 	@Override
 	public E get(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		Node<E> curr = tail.getNext();
+		for (int j = 0; j < i; j++) {
+
+			curr = curr.getNext();
+		}
+
+		return curr.getElement();
 	}
 
+	// update methods
 	@Override
 	public void add(int i, E e) {
 		// TODO Auto-generated method stub
@@ -40,42 +66,100 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		Node<E> head = tail.getNext();
+
+		if (head == tail) {
+			tail = null;
+		} else {
+			tail.setNext(head.getNext());
+		}
+		size--;
+		return head.getElement();
 	}
 
 	@Override
 	public E removeLast() {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			return null;
+		}
+		Node<E> last = tail;
+		Node<E> secLast = tail.getNext();
+		Node<E> headNode = tail.getNext();
+		if (secLast == tail) {
+			tail = null;
+		} else {
+			while (secLast.getNext() != tail) {
+				secLast = secLast.getNext();
+			}
+			tail = secLast;
+			tail.setNext(headNode);
+		}
+		
+		size--;
+		return last.getElement();
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
+		Node<E> cu = tail.getNext();
+
+		for (int i = 0; i < size; i++) {
+			System.out.print(cu.getElement() + ", ");
+			cu = cu.next;
+		}
 		return null;
 	}
 
 	@Override
 	public void addFirst(E e) {
-		// TODO Auto-generated method stub
-
+		if (size == 0) {
+			tail = new Node<>(e, null);
+			tail.setNext(tail);
+		} else {
+			Node<E> newest = new Node<>(e, tail.getNext());
+			tail.setNext(newest);
+		}
+		size++;
 	}
 
 	@Override
 	public void addLast(E e) {
-		// TODO Auto-generated method stub
+		addFirst(e);
+		tail = tail.getNext();
 
 	}
 
 	public void rotate() {
-				
+		if (tail != null) {
+			tail = tail.getNext();
+		}
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		String newString = "[ ";
+
+		Node<E> current = tail.getNext();
+		while (current != tail) {
+			newString = newString + current.getElement();
+			newString = newString + "->";
+
+			if (current.getNext() == tail) {
+				newString = newString + tail.getElement() + " ]";
+			}
+
+			current = current.getNext();
+		}
+
+		return newString;
+	}
+
 	public static void main(String[] args) {
 		CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
-		for(int i = 10; i < 20; ++i) {
+		for (int i = 10; i < 20; ++i) {
 			ll.addLast(i);
 		}
 
@@ -85,7 +169,8 @@ public class CircularlyLinkedList<E> implements List<E> {
 		System.out.println(ll);
 
 		ll.removeLast();
-
+		System.out.println("***"+ll);
+		
 		ll.rotate();
 		System.out.println(ll);
 
@@ -96,10 +181,9 @@ public class CircularlyLinkedList<E> implements List<E> {
 		ll.removeLast();
 		ll.rotate();
 		System.out.println(ll);
-
-		for (Integer e : ll) {
-			System.out.println("value: " + e);
-		}
-
+		ll.iterator();
+		/*
+		 * for (Integer e : ll) { System.out.println("value: " + e); }
+		 */
 	}
 }
