@@ -2,6 +2,8 @@ package projectCode20280;
 
 import java.util.Iterator;
 
+
+
 public class CircularlyLinkedList<E> implements List<E> {
 
 	private static class Node<E> {
@@ -54,14 +56,43 @@ public class CircularlyLinkedList<E> implements List<E> {
 	// update methods
 	@Override
 	public void add(int i, E e) {
-		// TODO Auto-generated method stub
+		Node<E> newNode = new Node<E>(e, null);
+		Node<E> prevNode = tail;
+		Node<E> currNode = tail.getNext();
+		
+		for(int j=0; j<i; j++) {
+			prevNode = currNode;
+			currNode = currNode.next;
+		}
+		
+		prevNode.setNext(newNode);
+		newNode.setNext(currNode);
+		
+		size++;
 
 	}
 
 	@Override
 	public E remove(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new RuntimeException("cant delete");
+		}
+		Node<E> headNode = tail.getNext();
+		Node<E> cur = headNode;
+		Node<E> prev = null;
+		if (i == 0) {tail.setNext(headNode.getNext()); return headNode.getElement();}
+		else if (i==size-1) {System.out.print(removeLast()); return null;}
+		else {
+				
+			
+			for(int j = 0; j<i; j++) {
+				prev = cur;
+				cur = cur.getNext();
+			}
+			
+			prev.next = cur.next;
+		}
+		return cur.getElement();
 	}
 
 	@Override
@@ -168,7 +199,9 @@ public class CircularlyLinkedList<E> implements List<E> {
 		ll.removeFirst();
 		System.out.println(ll);
 
-		ll.removeLast();
+		System.out.println(ll.removeLast());
+		System.out.println("***"+ll);
+		System.out.println(ll.remove(7));
 		System.out.println("***"+ll);
 		
 		ll.rotate();
@@ -182,6 +215,8 @@ public class CircularlyLinkedList<E> implements List<E> {
 		ll.rotate();
 		System.out.println(ll);
 		ll.iterator();
+		ll.add(2, 25);
+		System.out.println("***"+ll);
 		/*
 		 * for (Integer e : ll) { System.out.println("value: " + e); }
 		 */
