@@ -100,7 +100,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		size--;
 		
-		return null;
+		return currNode.getElement();
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class DoublyLinkedList<E> implements List<E> {
             size--;
         }
  
-        return null;
+        return headerNode.getElement();
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		predeccesor.setNext(successor);
 		successor.setPrev(predeccesor);
 		size--;
-		return null;
+		return toDelete.getElement();
 	}
 	
 
@@ -185,12 +185,12 @@ public class DoublyLinkedList<E> implements List<E> {
            ll.add(2, 3);
            System.out.println(ll);
            System.out.println(ll.size());
-           ll.removeFirst();
+           System.out.println("******" +ll.removeFirst());
            System.out.println(ll);
 
-           ll.removeLast();
+           System.out.println("------" +ll.removeLast());
            System.out.println(ll);
-           ll.remove(1);
+           System.out.println("------" +ll.remove(1));
            System.out.println(ll);
            ll.iterator();
            System.out.println(ll.size());
