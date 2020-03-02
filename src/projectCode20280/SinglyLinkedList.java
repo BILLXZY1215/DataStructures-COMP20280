@@ -35,6 +35,23 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 	}
 
+	
+	//reverse list using Array Stack
+	public void printReverse(Node head) {
+		ArrayStack<Node> stk = new ArrayStack<Node>();
+		Node ptr = head;
+		while (ptr != null) {
+			stk.push(ptr);
+			ptr = ptr.next;
+		}
+		//PRINT
+		while (stk.size()>0) {
+			System.out.print( stk.peek().element + " "); 
+	        stk.pop();
+		}
+		System.out.println( "\n");
+
+	}
 	// checks if the LL is empty
 	@Override
 	public boolean isEmpty() {
@@ -231,5 +248,6 @@ public class SinglyLinkedList<E> implements List<E> {
 		ll.removeFirst();
 		System.out.println(ll);
 		System.out.println(ll.size());
+		ll.printReverse(ll.head);
 	}
 }

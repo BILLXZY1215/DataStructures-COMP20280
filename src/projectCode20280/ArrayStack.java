@@ -47,6 +47,18 @@ public class ArrayStack<E> implements Stack<E> {
 		t--;
 		return answer;
 	}
+	
+	E peek() 
+    { 
+        if (t < 0) { 
+            System.out.println("Stack Underflow"); 
+            return null; 
+        } 
+        else { 
+            E x = data[t]; 
+            return x; 
+        } 
+    } 
 
 	//main
 	public static void main(String[] args) {
