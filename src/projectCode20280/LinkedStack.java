@@ -24,7 +24,10 @@ public class LinkedStack<E> implements Stack<E> {
 	
 	//main
 	public static void main(String[] args) {
-
+		LinkedStack<Integer> bStack = new LinkedStack<>();
+		bStack.push(4);
+		bStack.push(6);
+		System.out.println(bStack.size());
 	}
 
 }

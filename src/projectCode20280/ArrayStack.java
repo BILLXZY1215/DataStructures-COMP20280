@@ -62,6 +62,9 @@ public class ArrayStack<E> implements Stack<E> {
 
 	//main
 	public static void main(String[] args) {
-
+		ArrayStack<Integer> bStack = new ArrayStack<>(21);
+		bStack.push(4);
+		bStack.push(6);
+		System.out.println(bStack.peek());
 	}
 }
