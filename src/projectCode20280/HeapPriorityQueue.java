@@ -11,6 +11,8 @@ import java.util.Comparator;
  */
 
 public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
+	
+	protected ArrayList<Entry<K,V>> heap = new ArrayList<>();
 
 	/** Creates an empty priority queue based on the natural ordering of its keys. */
   public HeapPriorityQueue() { super(); }
@@ -30,26 +32,63 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
    * @param keys an array of the initial keys for the priority queue
    * @param values an array of the initial values for the priority queue
    */
-  public HeapPriorityQueue(K[] keys, V[] values) ;
+  public HeapPriorityQueue(K[] keys, V[] values) {
+	  super();
+	  for (int j = 0; j < Math.min(keys.length, values.length); j++) {
+		heap.add(new PQEntry<>(keys[j], values[j]));
+	}
+	  heapify();
+}
 
   // protected utilities
-  protected int parent(int j);
-  protected int left(int j) ;
-  protected int right(int j) ;
-  protected boolean hasLeft(int j);
-  protected boolean hasRight(int j);
+  protected int parent(int j) {	return (j-1)/2;}
+  protected int left(int j) { return 2*j+1; }
+  protected int right(int j) { return 2*j+2; }
+  protected boolean hasLeft(int j){ return left(j)<heap.size(); }
+  protected boolean hasRight(int j) { return right(j)<heap.size(); }
 
   /** Exchanges the entries at indices i and j of the array list. */
-  protected void swap(int i, int j) ;
+  protected void swap(int i, int j) {
+	  Entry<K, V> temp = heap.get(i);
+	  heap.set(i, heap.get(j));
+	  heap.set(j, temp);
+}
+  
 
   /** Moves the entry at index j higher, if necessary, to restore the heap property. */
-  protected void upheap(int j);
+  protected void upheap(int j) {
+	  while(j>0) {
+		  int p = parent(j);
+		  if (compare(heap.get(j), heap.get(p))>=0) break;
+		  swap(j, p);
+		  j = p;
+		}
+}
   
   /** Moves the entry at index j lower, if necessary, to restore the heap property. */
-  protected void downheap(int j) ;
+  protected void downheap(int j) {
+	  while (hasLeft(j)) {
+		int left_index = left(j);
+		int small_child_index = left_index;
+		if (hasRight(j)) {
+			int right_index = right(j);
+			if (compare(heap.get(left_index), heap.get(right_index))>0)
+				small_child_index=right_index;
+		}
+		if (compare(heap.get(small_child_index), heap.get(j))>=0)
+			break;
+		swap(j, small_child_index);
+		j=small_child_index;
+	}
+}
 
   /** Performs a bottom-up construction of the heap in linear time. */
-  protected void heapify() ;
+  protected void heapify() {
+	  int start_index = parent(size()-1);
+	  for (int j = start_index; j>=0; j--) {
+		downheap(j);
+	}
+}
 
   // public methods
 
@@ -65,7 +104,12 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
    * @return entry having a minimal key (or null if empty)
    */
   @Override
-  public Entry<K,V> min() ;
+  public Entry<K,V> min() {
+	if (heap.isEmpty()) {
+		return null;
+	}
+	return heap.get(0);
+}
 
   /**
    * Inserts a key-value pair and return the entry created.
@@ -75,17 +119,31 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
    * @throws IllegalArgumentException if the key is unacceptable for this queue
    */
   @Override
-  public Entry<K,V> insert(K key, V value) throws IllegalArgumentException ;
+  public Entry<K,V> insert(K key, V value) throws IllegalArgumentException {
+	checkKey(key);
+	Entry<K, V> newest = new PQEntry<>(key, value);
+	heap.add(newest);
+	upheap(heap.size()-1);
+	return newest;
+}
 
   /**
    * Removes and returns an entry with minimal key.
    * @return the removed entry (or null if empty)
    */
   @Override
-  public Entry<K,V> removeMin() ;
+  public Entry<K,V> removeMin() {
+	if (heap.isEmpty()) {return null;}
+	Entry<K, V> answer = heap.get(0);
+	swap(0, heap.size()-1);
+	heap.remove(heap.size()-1);
+	downheap(0);
+	return answer;
+}
 
   /** Used for debugging purposes only */
-  private void sanityCheck() {
+  
+private void sanityCheck() {
     for (int j=0; j < heap.size(); j++) {
       int left = left(j);
       int right = right(j);
