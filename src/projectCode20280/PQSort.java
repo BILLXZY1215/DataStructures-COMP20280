@@ -5,9 +5,7 @@ import java.util.Random;
 public class PQSort {
 	
 	//constructor 
-	public PQSort() {
-		
-	}
+	public PQSort() {}
 	
 	public static boolean isSorted(int[] array) {
 	    for (int i = 0; i < array.length - 1; i++) {
@@ -39,10 +37,11 @@ public class PQSort {
 	}
 	
 	
-
-	public static void main(String[] args) {
-		int n = 10;
-		while(n<1000) {
+	
+	//using Single linked list
+	public static void main2(String[] args) {
+		int n = 500;
+		while(n<3100) {
 		SinglyLinkedList<Integer> arr = new SinglyLinkedList<Integer>();
 		filler(arr, n);
 		//System.out.println(arr);
@@ -62,7 +61,40 @@ public class PQSort {
 		long endTime = System.nanoTime();
 		long diff = endTime - startTime;
 		//System.out.println(arr);
-		System.out.println("Size: " + arr.size() + " | Is it sorted? " + arr.isSortedAsc() + " | Time taken (ns): " + diff);
+		//System.out.println("Size: " + arr.size() + " | Is it sorted? " + arr.isSortedAsc() + " | Time taken (ns): " + diff);
+		System.out.println(arr.size() + " " + diff);
+		n *= 1.1;
+		}
+	}
+	
+	//Using heap
+	public static void main(String[] args) {
+		int n = 500;
+		while(n<3100) {
+		SinglyLinkedList<Integer> arr = new SinglyLinkedList<Integer>();
+		filler(arr, n);
+		System.out.println(arr);
+		
+		long startTime = System.nanoTime();
+		HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>();
+		
+		//add elements to pq
+		while (!arr.isEmpty()) {
+			Integer value = arr.removeFirst();
+			pq.insert(value, value);
+			
+		}
+		
+		while (!pq.isEmpty()) {
+			Integer min= pq.removeMin().getValue();
+			arr.addLast(min);
+			
+		}
+		long endTime = System.nanoTime();
+		long diff = endTime - startTime;
+		System.out.println(arr);
+		//System.out.println("Size: " + arr.size() + " | Is it sorted? " + arr.isSortedAsc() + " | Time taken (ns): " + diff);
+		System.out.println(arr.size() + " " + diff);
 		n *= 1.1;
 		}
 	}
