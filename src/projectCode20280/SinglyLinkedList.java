@@ -171,12 +171,19 @@ public class SinglyLinkedList<E> implements List<E> {
 	@Override
 	public void addLast(E e) {
 		Node<E> newNode = new Node<E>(e, null);
-		Node<E> last = head;
+		if (isEmpty()) {
+			head = newNode;
+		}
+		else {
+		
+			Node<E> last = head;
 
 		while (last.getNext() != null) {
 			last = last.getNext();
 		}
 		last.setNext(newNode);
+		}
+		
 		size++;
 
 	}
@@ -200,6 +207,22 @@ public class SinglyLinkedList<E> implements List<E> {
 		return newString;
 	}
 
+	// function to Check Linked List is  
+	// sorted in ascending order or not  {FOR INTS}
+	public boolean isSortedAsc() 
+	{  
+	    if (head == null) 
+	        return true; 
+	  
+	    // Traverse the list till last node and return 
+	    // false if a node is smaller than or equal 
+	    // its next. 
+	    for (Node<Integer> t = (Node<Integer>) head; t.next != null; t = t.next) 
+	    if (t.element > t.next.element) 
+	            return false; 
+	    return true; 
+	} 
+	
 	public static void main(String[] args) {
 		String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
