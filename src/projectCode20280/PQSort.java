@@ -7,13 +7,13 @@ public class PQSort {
 	//constructor 
 	public PQSort() {}
 	
-	public static boolean isSorted(int[] array) {
+	/*public static boolean isSorted(int[] array) {
 	    for (int i = 0; i < array.length - 1; i++) {
 	        if (array[i] > array[i + 1])
 	            return false;
 	    }
 	    return true;
-	}
+	}*/
 	
 	public static void filler(SinglyLinkedList<Integer> ll, int n) {
 		Random rand = new Random();
@@ -73,10 +73,10 @@ public class PQSort {
 		while(n<3100) {
 		SinglyLinkedList<Integer> arr = new SinglyLinkedList<Integer>();
 		filler(arr, n);
-		System.out.println(arr);
+		//System.out.println(arr);
 		
 		long startTime = System.nanoTime();
-		HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<>();
+		HeapPriorityQueue<Integer, Integer> pq = new HeapPriorityQueue<Integer,Integer>();
 		
 		//add elements to pq
 		while (!arr.isEmpty()) {
@@ -92,9 +92,9 @@ public class PQSort {
 		}
 		long endTime = System.nanoTime();
 		long diff = endTime - startTime;
-		System.out.println(arr);
+		//System.out.println(arr);
 		//System.out.println("Size: " + arr.size() + " | Is it sorted? " + arr.isSortedAsc() + " | Time taken (ns): " + diff);
-		System.out.println(arr.size() + " " + diff);
+		System.out.println(arr.size() + " " + diff);// + " " + arr.isSortedAsc());
 		n *= 1.1;
 		}
 	}
