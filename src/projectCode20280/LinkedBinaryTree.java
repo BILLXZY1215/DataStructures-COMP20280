@@ -1,7 +1,5 @@
 package projectCode20280;
 
-import java.nio.channels.AlreadyBoundException;
-
 public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTree<E> {
 
 	//nested node class
@@ -28,6 +26,10 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		public void setParent(Node<E> parentNode) {parent = parentNode;}
 		public void setLeft(Node<E> leftNode) {left = leftNode;}
 		public void setRight(Node<E> rightNode) {right = rightNode; }
+		
+		public String toString() {
+			return new StringBuilder("(").append(element).append(")").toString();
+		}
 	}
 	
 	protected Node<E> createNode(E e, Node<E> parent, Node<E> left, Node<E> right) {
@@ -276,21 +278,61 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		  return sb.toString();
 	  }
 	
+	  public void createLevelOrder(E[] arr) {
+			root = createLevelOrderHelper(arr, root, 0);
+		}
+	  
+	  private Node<E> createLevelOrderHelper(E[] arr, Node<E> p, int i){
+		  if (i < arr.length) {
+			Node<E> n = createNode(arr[i], p, null, null);
+			n.left = createLevelOrderHelper(arr, n.left, 2*i + 1);
+			n.right = createLevelOrderHelper(arr, n.right, 2*i + 2);
+			++size;
+			return n;
+		}
+		  return p;
+	  }
 	
-	public static void main(String [] args) {
-		  LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<Integer>();
+	public static void main(String [] args) throws IllegalArgumentException, IllegalAccessException {
+		 
+		/*
+		LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<Integer>();
 		  
 		  int [] arr = {12, 25, 31, 58, 36, 42, 90, 62, 75};
 		  for(int i : arr) {
 			  bt.insert(i);
 		  }
 		  System.out.println("bt: " + bt.size() + " " + bt );
-		  
+		*/
+		
 		  LinkedBinaryTree<Integer> bt1 = new LinkedBinaryTree<Integer>();
-		  Position<Integer> temp = bt1.addRoot(5);
-		  System.out.println(temp);
+		  /*
+		   *Direct Construction of Tree
+		  Position<Integer> temp = bt1.addRoot(12);
+		  Position<Integer> p1 = bt1.addLeft(temp, 25);
+		  Position<Integer> p2 = bt1.addRight(temp, 31);
+		  Position<Integer> p3 =  bt1.addLeft(p1, 58);
+		  bt1.addRight(p1, 36);
+		  Position<Integer> p5 = bt1.addLeft(p2, 42);
+		  bt1.addRight(p2, 90);
+		  Position<Integer> p4 = bt1.addLeft(p3, 62);
+		  bt1.addRight(p3, 75);
+		  */
 		  
+		  //Level Order Construction
+		  Integer [] arr = {12, 25, 31, 58, 36, 42, 90, 62, 75};
+		  bt1.createLevelOrder(arr);
+		  System.out.println("bt1 inorder: " + bt1.size() + " " + bt1.inorder() );
+		  System.out.println("bt1 preorder: " + bt1.size() + " " + bt1.preorder() );
+		  System.out.println("bt1 preorder: " + bt1.size() + " " + bt1.postorder() );
+		  System.out.println("bt1 height: " + bt1.height(bt1.root()));
+		  System.out.println("bt1 depth: " + bt1.depth(bt1.root()));
+		//  System.out.println("bt1 depth 62: " + bt1.depth(p4));
+		//  System.out.println("bt1 depth 42: " + bt1.depth(p5));
 	  }
+
+
+	
 	
 	
 
