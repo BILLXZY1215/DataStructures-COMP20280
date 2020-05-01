@@ -1,6 +1,6 @@
 package projectCode20280;
 
-public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTree<E> {
+public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 	//nested node class
 	protected static class Node<E> implements Position<E>{
