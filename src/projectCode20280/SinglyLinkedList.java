@@ -11,7 +11,7 @@ public class SinglyLinkedList<E> implements List<E> {
 	public SinglyLinkedList() {
 	}
 
-	private static class Node<E> {
+	public static class Node<E> {
 		private E element;
 		private Node<E> next;
 

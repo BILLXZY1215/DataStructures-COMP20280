@@ -22,6 +22,20 @@ public class LinkedStack<E> implements Stack<E> {
 	@Override
 	public E pop() {return list.removeFirst();}
 	
+	@Override
+	public String toString() {
+		if (isEmpty()) {
+			return "[]";
+		}
+		String newString = "[" + list.get(0);
+		
+		for (int i = 1; i < size(); i++) {
+			newString = newString + ", " +list.get(i);
+		}
+
+		return newString+"]";
+	}
+	
 	//main
 	public static void main(String[] args) {
 		LinkedStack<Integer> bStack = new LinkedStack<>();

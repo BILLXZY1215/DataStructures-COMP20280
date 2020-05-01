@@ -387,6 +387,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		System.out.println(treeMap.entrySet());
 		treeMap.remove(0);
 		System.out.println(treeMap.entrySet());
+		System.out.println(treeMap.keySet().toString());
 		
 		/*Random rnd = new Random();
 		int n = 16;

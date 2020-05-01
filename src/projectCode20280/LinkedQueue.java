@@ -23,10 +23,25 @@ public class LinkedQueue<E> implements Queue<E> {
 	@Override
 	public E dequeue() {return list.removeFirst();}
 	
-	
+	@Override
+	public String toString() {
+		if (isEmpty()) {
+			return "[]";
+		}
+		String newString = "[" + list.get(0);
+		
+		for (int i = 1; i < size(); i++) {
+			newString = newString + ", " +list.get(i);
+		}
+
+		return newString+"]";
+	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		LinkedQueue<Integer> s = new LinkedQueue<>();
+		for(int i = 0; i < 10; ++i)
+			s.enqueue(i);
+		System.out.print(s);
 
 	}
 

@@ -274,8 +274,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 			  sb.append(p.getElement());
 			  sb.append(", ");
 		  }
-		  sb.append("]");
-		  return sb.toString();
+		  sb.setLength(sb.length() - 2);
+		  return sb.toString() + "]";
 	  }
 	
 	  public void createLevelOrder(E[] arr) {
@@ -327,6 +327,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		  System.out.println("bt1 preorder: " + bt1.size() + " " + bt1.postorder() );
 		  System.out.println("bt1 height: " + bt1.height(bt1.root()));
 		  System.out.println("bt1 depth: " + bt1.depth(bt1.root()));
+		  System.out.println(bt1);
 		//  System.out.println("bt1 depth 62: " + bt1.depth(p4));
 		//  System.out.println("bt1 depth 42: " + bt1.depth(p5));
 	  }

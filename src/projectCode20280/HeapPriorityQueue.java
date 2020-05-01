@@ -153,4 +153,24 @@ private void sanityCheck() {
         System.out.println("Invalid right child relationship");
     }
   }
+
+
+
+//helper methods
+public String toString(){
+    StringBuffer sb = new StringBuffer();
+    for(int i = 1; i <= size(); i ++)
+        sb.append(heap.toString()+" ");
+    return sb.toString();
+}
+
+public static void main(String[] args) {
+	Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+	HeapPriorityQueue<Integer, String> pq = new HeapPriorityQueue<>();
+
+	for(Integer i : arr) pq.insert(i, Integer.toString(i));
+	
+	System.out.print(pq);
+}
+
 }
