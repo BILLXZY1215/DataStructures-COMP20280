@@ -2,10 +2,6 @@ package projectCode20280;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * An implementation of a sorted map using a binary search tree.
@@ -252,8 +248,16 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 	 */
 	@Override
 	public Entry<K, V> ceilingEntry(K key) throws IllegalArgumentException {
-		// TODO
-		return null;
+		checkKey(key);                              // may throw IllegalArgumentException
+	    Position<Entry<K,V>> p = treeSearch(root(), key);
+	    if (isInternal(p)) return p.getElement();   // exact match
+	    while (!isRoot(p)) {
+	      if (p == left(parent(p)))
+	        return parent(p).getElement();          // parent has next greater key
+	      else
+	        p = parent(p);
+	    }
+	    return null;                                // no such ceiling exists
 	}
 
 	/**
@@ -312,8 +316,18 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 	 */
 	@Override
 	public Entry<K, V> higherEntry(K key) throws IllegalArgumentException {
-		// TODO
-		return null;
+		 checkKey(key);                               // may throw IllegalArgumentException
+		    Position<Entry<K,V>> p = treeSearch(root(), key);
+		    if (isInternal(p) && isInternal(right(p)))
+		      return treeMin(right(p)).getElement();     // this is the successor to p
+		    // otherwise, we had failed search, or match with no right child
+		    while (!isRoot(p)) {
+		      if (p == left(parent(p)))
+		        return parent(p).getElement();           // parent has next lesser key
+		      else
+		        p = parent(p);
+		    }
+		    return null;                                 // no such greater key exists
 	}
 
 	// Support for iteration
@@ -377,17 +391,46 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 			dumpRecurse(right(p), depth + 1);
 		}
 	}
+	
+	//helper methods
+	public String toString(){
+	    
+		
+		String string = "" + tree.inorder();
+		
+		return string;
+		
+	}
 
 	public static void main(String[] args) {
 		TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
 		
 		treeMap.put(0, 0);
-		System.out.println(treeMap.entrySet());
+		//System.out.println(treeMap.entrySet());
 		treeMap.put(2, 1);
-		System.out.println(treeMap.entrySet());
+		//System.out.println(treeMap.entrySet());
 		treeMap.remove(0);
-		System.out.println(treeMap.entrySet());
-		System.out.println(treeMap.keySet().toString());
+		//System.out.println(treeMap.entrySet());
+		//System.out.println(treeMap.keySet().toString());
+		///System.out.println(treeMap);
+		
+		TreeMap<Integer, String> map = new TreeMap<>();
+		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+
+		for(int i = 0; i<arr.length; i++) {
+			map.put(arr[i], Integer.toString(i));
+		}
+		
+		System.out.println(map.toString());
+		
+		TreeMap<Integer, String> map2 = new TreeMap<>();
+		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr2 = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+
+		for(int j = 0; j < arr2.length; j++) {
+			map2.put(arr2[j], Integer.toString(j));
+		}
+		System.out.println(map2.toString());
 		
 		/*Random rnd = new Random();
 		int n = 16;
