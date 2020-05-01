@@ -2,6 +2,8 @@ package projectCode20280;
 
 import java.util.Iterator;
 
+import com.sun.org.apache.bcel.internal.generic.LASTORE;
+
 public class DoublyLinkedList<E> implements List<E> {
 
 	private static class Node<E> {
@@ -47,6 +49,16 @@ public class DoublyLinkedList<E> implements List<E> {
 		return size;
 	}
 
+	public E first() {
+		if (isEmpty()) return null;
+		return headerNode.getNext().getElement();
+	}
+	
+	public E last() {
+		if (isEmpty()) return null;
+		return trailerNode.getPrev().getElement();
+	}
+	
 	@Override
 	public boolean isEmpty() {
 		return size == 0;
@@ -167,11 +179,11 @@ public class DoublyLinkedList<E> implements List<E> {
         while(current.getNext() != null){
             result += current.getElement();
             if(current.getNext().getNext() != null){
-                 result += "->";
+                 result += ", ";
             }
             current = current.getNext();
         }
-        return "List: " + result + "]";	}
+        return result + "]";	}
 
 	public static void main(String[] args) {
 		   DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();

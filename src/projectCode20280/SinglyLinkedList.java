@@ -57,6 +57,22 @@ public class SinglyLinkedList<E> implements List<E> {
 	public boolean isEmpty() {
 		return size == 0;
 	}
+	
+	public E first() {
+		if (isEmpty()) return null;
+		return head.getElement();
+	}
+	
+	public E last() {
+		if (isEmpty()) return null;
+		Node<E> last = head;
+
+		while (last.getNext() != null) {
+			last = last.getNext();
+		}
+		
+		return last.getElement();
+	}
 
 	@Override
 	public E get(int i) {
@@ -116,8 +132,8 @@ public class SinglyLinkedList<E> implements List<E> {
 	public Iterator<E> iterator() {
 		Node<E> cu = head;
 
-		while (cu.next != null) {
-			System.out.print(cu.getElement() + ", ");
+		while (cu != null) {
+			System.out.print(cu.getElement() + " ");
 			cu = cu.next;
 		}
 		return null;
@@ -190,15 +206,16 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public String toString() {
-		String newString = "[ ";
+		String newString = "[";
 
 		Node<E> current = head;
 		while (current != null) {
 			newString = newString + current.getElement();
-			newString = newString + "->";
+			newString = newString + ", ";
 
 			if (current.getNext() == null) {
-				newString = newString + "NULL]";
+				newString = newString.substring(0, newString.length()-2);
+				newString = newString + "]";
 			}
 
 			current = current.getNext();
@@ -272,5 +289,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		System.out.println(ll);
 		System.out.println(ll.size());
 		ll.printReverse(ll.head);
-	}
+		
+		ll.iterator();
+		}
 }

@@ -38,6 +38,16 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 	@Override
 	public boolean isEmpty() {return size == 0;}
+	
+	public E first() {
+		if(isEmpty()) return null;
+		return tail.getNext().getElement();
+	}
+	
+	public E last() {
+		if(isEmpty()) return null;
+		return tail.getElement();
+	}
 
 	@Override
 	public E get(int i) {
