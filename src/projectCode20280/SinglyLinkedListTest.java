@@ -102,7 +102,7 @@ class SinglyLinkedListTest {
 		for(int i = 0; i < 5; ++i) ll.addLast(i);
 		
 		ArrayList<Integer> buf = new ArrayList<>();
-		for(Integer i : ll) {
+		for(int i = 0; i < ll.size(); i++) {
 			buf.add(i);
 		}
 		assertEquals("[0, 1, 2, 3, 4]", buf.toString());

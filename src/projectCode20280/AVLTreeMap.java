@@ -63,7 +63,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		do {
 			oldHeight = height(p);
 			if (!isBalanced(p)) {
-				p = restructure(tallerChild(tallerChild(p)));
+				p = tree.restructure(tallerChild(tallerChild(p)));
 				recomputeHeight(left(p));
 				recomputeHeight(right(p));
 			}

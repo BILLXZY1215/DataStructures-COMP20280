@@ -1,5 +1,6 @@
 package projectCode20280;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SinglyLinkedList<E> implements List<E> {
@@ -290,6 +291,16 @@ public class SinglyLinkedList<E> implements List<E> {
 		System.out.println(ll.size());
 		ll.printReverse(ll.head);
 		
-		ll.iterator();
+		SinglyLinkedList<Integer> ll2 = new SinglyLinkedList<>();
+		for(int i = 0; i < 5; ++i) ll2.addLast(i);
+		
+		ArrayList<Integer> buf = new ArrayList<>();
+		
+		for (int i = 0; i < ll2.size; i++) {
+			buf.add(i);
+		}
+		
+		System.out.println(buf.toString());
+		//ll.iterator();
 		}
 }
