@@ -158,19 +158,32 @@ private void sanityCheck() {
 
 //helper methods
 public String toString(){
-    StringBuffer sb = new StringBuffer();
-    for(int i = 1; i <= size(); i ++)
-        sb.append(heap.toString()+" ");
-    return sb.toString();
+    String s = "[";
+    for(int i = 0; i < size(); i ++)
+        s = s+ heap.get(i).getKey() + ", ";
+    s = s.substring(0, s.length()-2);
+    return s +"]";
 }
 
 public static void main(String[] args) {
+	HeapPriorityQueue<Integer, String> pq1 = new HeapPriorityQueue<>();
+	pq1.insert(2, "ahmed");
+	pq1.insert(4, "jaan");
+	System.out.println(pq1);
+	
 	Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 	HeapPriorityQueue<Integer, String> pq = new HeapPriorityQueue<>();
 
-	for(Integer i : arr) pq.insert(i, Integer.toString(i));
+	for(int i = 0; i<arr.length; i++) pq.insert(arr[i], Integer.toString(i));
+	System.out.println(pq.heap.get(2).getKey());
 	
 	System.out.print(pq);
+	
+	Integer[] arr2 = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+	HeapPriorityQueue<Integer, String> pq2 = new HeapPriorityQueue<>();
+
+	for(Integer i : arr2) pq.insert(i, Integer.toString(i));
+	System.out.print("w" + pq);
 }
 
 }

@@ -55,7 +55,7 @@ class HeapPriorityQueueTest {
 		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 		HeapPriorityQueue<Integer, String> pq = new HeapPriorityQueue<>();
 
-		for(Integer i : arr) pq.insert(i, Integer.toString(i));
+		for(int i = 0; i<arr.length; i++) pq.insert(arr[i], Integer.toString(i));
 
 		assertEquals("[1, 2, 5, 23, 4, 12, 15, 35, 24, 33, 21, 26]", pq.toString());
 	}
