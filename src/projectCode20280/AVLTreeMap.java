@@ -112,14 +112,21 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 	
 	public static void main(String [] args) {
 		AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
-		Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
-		for (Integer i : arr) {
-			avl.put(i, i);
-		}
-
-		System.out.println("avl: " + avl.entrySet());
+	//	Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
+			avl.put(3, 2);
+			avl.put(4, 5);
 		
-		avl.remove(arr[0]);
+			AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
+			Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+
+			for(Integer i : arr) {
+				map.put(i, Integer.toString(i));
+			}
+
+
+		System.out.println("avl: " + map);
+		
+		System.out.println(avl.remove(3));
 
 		System.out.println("avl: " + avl.entrySet());
 	}

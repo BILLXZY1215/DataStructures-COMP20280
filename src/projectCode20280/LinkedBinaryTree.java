@@ -1,5 +1,6 @@
 package projectCode20280;
 
+
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 	//nested node class
