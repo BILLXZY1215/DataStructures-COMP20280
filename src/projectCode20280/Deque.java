@@ -1,3 +1,9 @@
+/**
+ * The {@code Deque} in this class implements a
+ * basic deque interface.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 public interface Deque<E> {

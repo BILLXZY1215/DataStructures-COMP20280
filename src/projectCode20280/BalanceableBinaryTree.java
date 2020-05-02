@@ -1,5 +1,11 @@
+/**
+ * The {@code BalanceableBinaryTree} in this 
+ * class implements a specialized version of 
+ * LinkedBinaryTree with support for balancing.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
-
 
 public class BalanceableBinaryTree<K, V> extends LinkedBinaryTree<Entry<K, V>> {
 	// -------------- nested BSTNode class --------------
@@ -60,20 +66,20 @@ public class BalanceableBinaryTree<K, V> extends LinkedBinaryTree<Entry<K, V>> {
 	 * Caller should ensure that p is not the root.
 	 */
 	public void rotate(Position<Entry<K, V>> p) {
-		Node<Entry<K,V>> x = validate(p);
-		Node<Entry<K,V>> y = x.getParent( ); // we assume this exists
-		Node<Entry<K,V>> z = y.getParent( ); // grandparent (possibly null)
+		Node<Entry<K, V>> x = validate(p);
+		Node<Entry<K, V>> y = x.getParent(); // we assume this exists
+		Node<Entry<K, V>> z = y.getParent(); // grandparent (possibly null)
 		if (z == null) {
 			root = x; // x becomes root of the tree
 			x.setParent(null);
 		} else
-			relink(z, x, y == z.getLeft( )); // x becomes direct child of z
-			// now rotate x and y, including transfer of middle subtree
-			if (x == y.getLeft( )) {
-				relink(y, x.getRight( ), true); // x’s right child becomes y’s left
-				relink(x, y, false); // y becomes x’s right child
+			relink(z, x, y == z.getLeft()); // x becomes direct child of z
+		// now rotate x and y, including transfer of middle subtree
+		if (x == y.getLeft()) {
+			relink(y, x.getRight(), true); // x’s right child becomes y’s left
+			relink(x, y, false); // y becomes x’s right child
 		} else {
-			relink(y, x.getLeft( ), false); // x’s left child becomes y’s right
+			relink(y, x.getLeft(), false); // x’s left child becomes y’s right
 			relink(x, y, true);
 		}
 	}
@@ -108,15 +114,15 @@ public class BalanceableBinaryTree<K, V> extends LinkedBinaryTree<Entry<K, V>> {
 	 * Caller should ensure that x has a grandparent.
 	 */
 	public Position<Entry<K, V>> restructure(Position<Entry<K, V>> x) {
-		Position<Entry<K,V>> y = parent(x);
-		Position<Entry<K,V>> z = parent(y);
-			if ((x == right(y)) == (y == right(z))) { // matching alignments
-				rotate(y); // single rotation (of y)
-			return y; // y is new subtree root
-			} else { // opposite alignments
-				rotate(x); // double rotation (of x)
-		 		rotate(x);
-		 		return x; // x is new subtree root
-		 	}
+		Position<Entry<K, V>> y = parent(x);
+		Position<Entry<K, V>> z = parent(y);
+		if ((x == right(y)) == (y == right(z))) { // matching alignments
+			rotate(y); // one rotation on y
+			return y; // y is the new subtree root
+		} else { // opposite alignments
+			rotate(x); // two rotations on x
+			rotate(x);
+			return x; // x is new subtree root
+		}
 	}
 }

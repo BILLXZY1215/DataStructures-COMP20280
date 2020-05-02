@@ -1,3 +1,9 @@
+/**
+ * The {@code SinglyLinkedListTest} in this class implements a
+ * junit test for a singly linked list.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,17 +32,15 @@ class SinglyLinkedListTest {
 		assertEquals(true, ll.isEmpty());
 	}
 
-	
 	@Test
 	void testFirst() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
 		ll.addFirst(-1);
 		assertEquals(-1, ll.first());
-		
+
 		ll.removeFirst();
 		assertEquals(null, ll.first());
-		
-		
+
 	}
 
 	@Test
@@ -48,11 +52,10 @@ class SinglyLinkedListTest {
 
 		ll.addFirst(-2);
 		assertEquals(-1, ll.last());
-		
+
 		ll.addLast(-3);
 		assertEquals(-3, ll.last());
 	}
-
 
 	@Test
 	void testRemoveLast() {
@@ -65,7 +68,8 @@ class SinglyLinkedListTest {
 	@Test
 	void testGet() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-		for(int i = 0; i < 5; ++i) ll.addLast(i);
+		for (int i = 0; i < 5; ++i)
+			ll.addLast(i);
 
 		assertEquals(1, ll.get(1));
 	}
@@ -73,7 +77,8 @@ class SinglyLinkedListTest {
 	@Test
 	void testRemove() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-		for(int i = 0; i < 5; ++i) ll.addLast(i);
+		for (int i = 0; i < 5; ++i)
+			ll.addLast(i);
 
 		ll.remove(1);
 		assertEquals("[0, 2, 3, 4]", ll.toString());
@@ -82,7 +87,8 @@ class SinglyLinkedListTest {
 	@Test
 	void testAdd() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-		for(int i = 0; i < 5; ++i) ll.addLast(i);
+		for (int i = 0; i < 5; ++i)
+			ll.addLast(i);
 
 		ll.add(2, -1);
 		assertEquals("[0, 1, -1, 2, 3, 4]", ll.toString());
@@ -91,7 +97,8 @@ class SinglyLinkedListTest {
 	@Test
 	void testToString() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-		for(int i = 0; i < 5; ++i) ll.addLast(i);
+		for (int i = 0; i < 5; ++i)
+			ll.addLast(i);
 
 		assertEquals("[0, 1, 2, 3, 4]", ll.toString());
 	}
@@ -99,10 +106,11 @@ class SinglyLinkedListTest {
 	@Test
 	void testIterator() {
 		SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-		for(int i = 0; i < 5; ++i) ll.addLast(i);
-		
+		for (int i = 0; i < 5; ++i)
+			ll.addLast(i);
+
 		ArrayList<Integer> buf = new ArrayList<>();
-		for(int i = 0; i < ll.size(); i++) {
+		for (int i = 0; i < ll.size(); i++) {
 			buf.add(i);
 		}
 		assertEquals("[0, 1, 2, 3, 4]", buf.toString());

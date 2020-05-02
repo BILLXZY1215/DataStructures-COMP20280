@@ -1,3 +1,9 @@
+/**
+ * The {@code LinkedQueueTest} in this class implements a
+ * junit test for a linked queue class.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +15,7 @@ class LinkedQueueTest {
 	@Test
 	void testSize() {
 		LinkedQueue<Integer> s = new LinkedQueue<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.enqueue(i);
 		assertEquals(10, s.size());
 	}
@@ -17,9 +23,9 @@ class LinkedQueueTest {
 	@Test
 	void testIsEmpty() {
 		LinkedQueue<Integer> s = new LinkedQueue<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.enqueue(i);
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.dequeue();
 		assertEquals(true, s.isEmpty());
 	}
@@ -27,7 +33,7 @@ class LinkedQueueTest {
 	@Test
 	void testEnqueue() {
 		LinkedQueue<Integer> s = new LinkedQueue<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.enqueue(i);
 		assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", s.toString());
 	}
@@ -35,7 +41,7 @@ class LinkedQueueTest {
 	@Test
 	void testFirst() {
 		LinkedQueue<Integer> s = new LinkedQueue<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.enqueue(i);
 		assertEquals(0, s.first());
 	}
@@ -43,7 +49,7 @@ class LinkedQueueTest {
 	@Test
 	void testDequeue() {
 		LinkedQueue<Integer> s = new LinkedQueue<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.enqueue(i);
 
 		assertEquals(0, s.dequeue());

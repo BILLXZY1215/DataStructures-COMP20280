@@ -1,3 +1,9 @@
+/**
+ * The {@code TreeMapTest} in this class implements a
+ * junit test for a tree map class.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,21 +24,21 @@ class TreeMapTest {
 	@Test
 	void testRoot() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(35, map.root().getElement().getKey());
 	}
 
 	@Test
 	void testGet() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
 		assertEquals("15", map.get(15));
@@ -44,21 +50,23 @@ class TreeMapTest {
 	@Test
 	void testPut() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(int i = 0; i<arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			map.put(arr[i], Integer.toString(i));
 		}
-		
-		assertEquals("[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]", map.toString());
+
+		assertEquals(
+				"[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]",
+				map.toString());
 	}
 
 	@Test
 	void testRemoveK() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
 
@@ -70,42 +78,42 @@ class TreeMapTest {
 
 	@Test
 	void testFirstEntry() {
-		//TreeMap<Integer, String> map = new TreeMap<>();
+		// TreeMap<Integer, String> map = new TreeMap<>();
 		TreeMap<Integer, String> map = new TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(1, map.firstEntry().getKey());
 	}
 
 	@Test
 	void testLastEntry() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(35, map.lastEntry().getKey());
 	}
 
 	@Test
 	void testCeilingEntry() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(12, map.ceilingEntry(11).getKey());
-		
+
 		assertEquals(2, map.ceilingEntry(2).getKey());
 
 	}
@@ -113,13 +121,13 @@ class TreeMapTest {
 	@Test
 	void testFloorEntry() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(5, map.floorEntry(11).getKey());
 		assertEquals(5, map.floorEntry(5).getKey());
 
@@ -128,13 +136,13 @@ class TreeMapTest {
 	@Test
 	void testLowerEntry() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(23, map.lowerEntry(24).getKey());
 		assertEquals(26, map.lowerEntry(31).getKey());
 	}
@@ -142,40 +150,44 @@ class TreeMapTest {
 	@Test
 	void testHigherEntry() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		
+
 		assertEquals(12, map.higherEntry(11).getKey());
 	}
 
 	@Test
 	void testToString() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(int j = 0; j < arr.length; j++) {
+		for (int j = 0; j < arr.length; j++) {
 			map.put(arr[j], Integer.toString(j));
 		}
-		assertEquals("[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]", map.toString());
+		assertEquals(
+				"[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]",
+				map.toString());
 	}
 
 	@Test
 	void testSubMap() {
 		TreeMap<Integer, String> map = new TreeMap<>();
-		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		// java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
 
-		for(Integer i : arr) {
+		for (Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-				
-		//assertEquals("[12, 15, 21, 23, 24, 26, 33]", map.subMap(12, 34).keySet().toString());		
-		assertEquals("[<12, 12>, <15, 15>, <21, 21>, <23, 23>, <24, 24>, <26, 26>, <33, 33>]", map.subMap(12, 34).toString());	
+
+		// assertEquals("[12, 15, 21, 23, 24, 26, 33]", map.subMap(12,
+		// 34).keySet().toString());
+		assertEquals("[<12, 12>, <15, 15>, <21, 21>, <23, 23>, <24, 24>, <26, 26>, <33, 33>]",
+				map.subMap(12, 34).toString());
 	}
 
 }

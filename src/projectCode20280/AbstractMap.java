@@ -1,14 +1,19 @@
+/**
+ * The {@code AbstractMap} abstract class which eases the 
+ * implementation of the Map interface.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import java.util.Iterator;
 
 /**
- * An abstract base class to ease the implementation of the Map interface.
  *
  * The base class provides three means of support: 1) It provides an isEmpty
  * implementation based upon the abstract size() method. 2) It defines a
  * protected MapEntry class as a concrete implementation of the entry interface
- * 3) It provides implemenations of the keySet and values methods, based upon
+ * 3) It provides implementations of the keySet and values methods, based upon
  * use of a presumed implementation of the entrySet method.
  *
  */

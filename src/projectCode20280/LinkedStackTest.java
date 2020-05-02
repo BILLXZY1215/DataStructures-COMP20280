@@ -1,3 +1,9 @@
+/**
+ * The {@code LinkedStackTest} in this class implements a
+ * junit test for a linked stack class.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +15,7 @@ class LinkedStackTest {
 	@Test
 	void testSize() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals(10, s.size());
 	}
@@ -17,9 +23,9 @@ class LinkedStackTest {
 	@Test
 	void testIsEmpty() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
-		for(int i = 0; i < 10; ++i) {
+		for (int i = 0; i < 10; ++i) {
 			s.pop();
 		}
 		assertEquals(true, s.isEmpty());
@@ -28,7 +34,7 @@ class LinkedStackTest {
 	@Test
 	void testPush() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals(10, s.size());
 		assertEquals("[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", s.toString());
@@ -37,7 +43,7 @@ class LinkedStackTest {
 	@Test
 	void testTop() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals(9, s.top());
 	}
@@ -45,7 +51,7 @@ class LinkedStackTest {
 	@Test
 	void testPop() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals(9, s.pop());
 		assertEquals(9, s.size());
@@ -54,7 +60,7 @@ class LinkedStackTest {
 	@Test
 	void testToString() {
 		LinkedStack<Integer> s = new LinkedStack<>();
-		for(int i = 0; i < 10; ++i)
+		for (int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals("[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", s.toString());
 	}

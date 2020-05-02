@@ -1,3 +1,9 @@
+/**
+ * The {@code Map} in this class implements an
+ * interface of a map.
+ *
+ * @author Aonghus Lawlor & Ahmed Jouda 
+ */
 package projectCode20280;
 
 /**

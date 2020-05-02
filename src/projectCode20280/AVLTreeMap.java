@@ -1,16 +1,17 @@
+/**
+ * The {@code AVLTreeMap} in this class implements a
+ * sorted map using an AVL tree.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import java.util.Comparator;
 
-/**
- * An implementation of a sorted map using an AVL tree.
- */
-
 public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
-
-    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
-
+	// uses a balanceable binary tree
+	protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
 
 	/** Constructs an empty map using the natural ordering of keys. */
 	public AVLTreeMap() {
@@ -41,16 +42,21 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
 	/** Returns whether a position has balance factor between -1 and 1 inclusive. */
 	protected boolean isBalanced(Position<Entry<K, V>> p) {
-		return Math.abs(height(left(p))-height(right(p)))<=1;
+		return Math.abs(height(left(p)) - height(right(p))) <= 1;
 	}
 
 	/** Returns a child of p with height no smaller than that of the other child. */
 	protected Position<Entry<K, V>> tallerChild(Position<Entry<K, V>> p) {
-		if(height(left(p))> height(right(p))) return left(p);
-		if(height(left(p))< height(right(p))) return right(p);
-		if(isRoot(p)) return left(p);
-		if(p==left(parent(p))) return left(p);
-		else return right(p);
+		if (height(left(p)) > height(right(p)))
+			return left(p);
+		if (height(left(p)) < height(right(p)))
+			return right(p);
+		if (isRoot(p))
+			return left(p);
+		if (p == left(parent(p)))
+			return left(p);
+		else
+			return right(p);
 	}
 
 	/**
@@ -70,7 +76,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 			recomputeHeight(p);
 			newHeight = height(p);
 			p = parent(p);
-		} while (oldHeight!=newHeight && p!=null);
+		} while (oldHeight != newHeight && p != null);
 	}
 
 	/** Overrides the TreeMap rebalancing hook that is called after an insertion. */
@@ -101,39 +107,31 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		return true;
 	}
 
-	/*
-	public String toBinaryTreeString() {
-		BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>( (LinkedBinaryTree<Entry<K, V>>) this.tree);
-		return btp.print();
-	}
-	*/
+	public static void main(String[] args) {
 
-	public static void main(String [] args) {
-		AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
-	//	Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
-			//avl.put(3, 2);
-			//avl.put(4, 5);
+		// Create an AVLTreeMap
+		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
+		// Integer array with the values we want in it
+		Integer[] arr = new Integer[] { 35, 26, 15, 24, 33, 4, 12, 1, 23, 21, 2, 5 };
+		// put the values as keys and values(strings) into the AVL tree map
+		for (int i = 0; i < arr.length; i++) {
+			map.put(arr[i], Integer.toString(i));
+		}
 
-			AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
-			Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		System.out.println("Sanity Check (is it a valid AVL): \n" + map.sanityCheck());
+		System.out.println("\nEntry Set: \n" + map.entrySet());
+		System.out.println("\nTo String (Includes null nodes): \n" + map.toString());
+		System.out.println("\nSize (12 expected): \n" + map.size());
 
-			for(int i = 0; i<arr.length; i++) {
-				map.put(arr[i], Integer.toString(i));
-			}
+		System.out.println("\nRemove key 1: \nValue: " + map.remove(1));
+		System.out.println("\nNew Entry Set: \n" + map.entrySet());
+		System.out.println("\nSanity Check (is it a valid AVL): \n" + map.sanityCheck());
+		System.out.println("\nSize (11 expected): \n" + map.size());
 
-			/*(AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
-			Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		System.out.println("\nEntry with least key:\n" + map.firstEntry());
+		System.out.println("\nEntry with key 5:\n" + map.get(5));
 
-			for(int i = 0; i<arr.length;i++) {
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
-			}
-
-			map.put(arr[0], Integer.toString(0));
-			map.put(arr[1], Integer.toString(1));
-			map.put(arr[2], Integer.toString(2));
-			map.put(arr[3], Integer.toString(3));*/
-
-
-		System.out.println(map.entrySet());
 	}
 }

@@ -1,3 +1,9 @@
+/**
+ * The {@code Stack} in this class implements an
+ * interface of a simple stack.
+ *
+ * @author Aonghus Lawlor & Ahmed Jouda 
+ */
 package projectCode20280;
 
 public interface Stack<E> {

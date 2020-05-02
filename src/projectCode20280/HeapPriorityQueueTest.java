@@ -1,3 +1,9 @@
+/**
+ * The {@code HeapPriorityQueueTest} in this class implements a
+ * junit test for a Heap Priority Queue.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;

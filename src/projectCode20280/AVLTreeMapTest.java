@@ -1,3 +1,9 @@
+/**
+ * The {@code AVLTreeMapTest} in this class implements a
+ * junit test for an AVL tree.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import static org.junit.jupiter.api.Assertions.*;

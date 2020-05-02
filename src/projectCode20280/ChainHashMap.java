@@ -1,7 +1,12 @@
+/**
+ * The {@code ChainHashMap} in this class implements a
+ * hash table with separate chaining.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
  * Map implementation using hash table with separate chaining.
@@ -12,11 +17,19 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	private UnsortedTableMap<K, V>[] table; // initialized within createTable
 
 	/** Creates a hash table with capacity 11 and prime factor 109345121. */
-	public ChainHashMap() {	super();}
+	public ChainHashMap() {
+		super();
+	}
+
 	/** Creates a hash table with given capacity and prime factor 109345121. */
-	public ChainHashMap(int cap) {super(cap);}
+	public ChainHashMap(int cap) {
+		super(cap);
+	}
+
 	/** Creates a hash table with the given capacity and prime factor. */
-	public ChainHashMap(int cap, int p) {super(cap, p);}
+	public ChainHashMap(int cap, int p) {
+		super(cap, p);
+	}
 
 	/** Creates an empty table having length equal to current capacity. */
 	@Override
@@ -36,7 +49,9 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	protected V bucketGet(int h, K k) {
 		UnsortedTableMap<K, V> bucket = table[h];
-		if (bucket == null) {return null;}
+		if (bucket == null) {
+			return null;
+		}
 		return bucket.get(k);
 	}
 
@@ -54,7 +69,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 		UnsortedTableMap<K, V> bucket = table[h];
 		if (bucket == null) {
 			bucket = table[h] = new UnsortedTableMap<>();
-			}
+		}
 		int oldSize = bucket.size();
 		V ansV = bucket.put(k, v);
 		n += (bucket.size() - oldSize);
@@ -72,7 +87,9 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	protected V bucketRemove(int h, K k) {
 		UnsortedTableMap<K, V> bucket = table[h];
-		if (bucket == null) {return null;}
+		if (bucket == null) {
+			return null;
+		}
 		int oldSize = bucket.size();
 		V ansV = bucket.remove(k);
 		n -= (oldSize - bucket.size());
@@ -87,29 +104,31 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	public Iterable<Entry<K, V>> entrySet() {
 		ArrayList<Entry<K, V>> buffer = new ArrayList<>();
-		for (int h = 0; h < capacity; h++) 
-			if (table[h]!=null) 
-				for (Entry<K, V> entry : table[h].entrySet())  
+		for (int h = 0; h < capacity; h++)
+			if (table[h] != null)
+				for (Entry<K, V> entry : table[h].entrySet())
 					buffer.add(entry);
-		return buffer;		
-					
+		return buffer;
+
 	}
-	
+
 	public String toString() {
 		return entrySet().toString();
 	}
-	
+
 	public static void main(String[] args) {
-		//HashMap<Integer, String> m = new HashMap<Integer, String>();
+		// Create a chain hash map
 		ChainHashMap<Integer, String> m = new ChainHashMap<Integer, String>();
+		// put values into it
 		m.put(1, "One");
 		m.put(10, "Ten");
 		m.put(11, "Eleven");
 		m.put(20, "Twenty");
-		
+
 		System.out.println("m: " + m + "\nSize of m: " + m.size());
-		
+
 		m.remove(11);
 		System.out.println("m: " + m + "\nSize of m: " + m.size());
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 	}
 }

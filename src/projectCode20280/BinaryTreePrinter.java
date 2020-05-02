@@ -1,35 +1,34 @@
+/**
+   A class to print a text representation of a Binary Tree.
+   Inspired by: https://github.com/billvanyo/tree_printer
+   @author: Aonghus Lawlor aonghus.lawlor@ucd.ie & Ahmed Jouda
+ */
 package projectCode20280;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
-   A class to print a text representation of a Binary Tree.
-   Inspired by: https://github.com/billvanyo/tree_printer
-   @author: Aonghus Lawlor aonghus.lawlor@ucd.ie
- */
-
-public class BinaryTreePrinter< N > {
+public class BinaryTreePrinter<N> {
 
 	private boolean squareBranches = false;
 	private boolean lrAgnostic = false;
 	private int hspace = 2;
-	//private int tspace = 1;
-	
+	// private int tspace = 1;
+
 	private BinaryTree<N> tree;
-	
+
 	public BinaryTreePrinter(BinaryTree<N> tree) {
 		this.tree = tree;
 	}
-	
+
 	public String print() {
 		List<TreeLine> treeLines = buildTreeLines(tree.root());
 		return printTreeLines(treeLines);
-		
-		//return tree.toString();
+
+		// return tree.toString();
 	}
-	
+
 	private static class TreeLine {
 		String line;
 		int leftOffset;
@@ -41,10 +40,10 @@ public class BinaryTreePrinter< N > {
 			this.rightOffset = rightOffset;
 		}
 	}
-	
+
 	private String printTreeLines(List<TreeLine> treeLines) {
 		StringBuilder sb = new StringBuilder();
-		
+
 		if (treeLines.size() > 0) {
 			int minLeftOffset = minLeftOffset(treeLines);
 			int maxRightOffset = maxRightOffset(treeLines);
@@ -65,14 +64,14 @@ public class BinaryTreePrinter< N > {
 	private static int maxRightOffset(List<TreeLine> treeLines) {
 		return treeLines.stream().mapToInt(l -> l.rightOffset).max().orElse(0);
 	}
-	
+
 	private List<TreeLine> buildTreeLines(Position<N> root) {
 		if (root == null)
 			return Collections.emptyList();
 		else {
-			String rootLabel = root.toString();//getLabel.apply(root);
-			//List<TreeLine> leftTreeLines = buildTreeLines(getLeft.apply(root));
-			//List<TreeLine> rightTreeLines = buildTreeLines(getRight.apply(root));
+			String rootLabel = root.toString();// getLabel.apply(root);
+			// List<TreeLine> leftTreeLines = buildTreeLines(getLeft.apply(root));
+			// List<TreeLine> rightTreeLines = buildTreeLines(getRight.apply(root));
 			List<TreeLine> leftTreeLines = buildTreeLines(tree.left(root));
 			List<TreeLine> rightTreeLines = buildTreeLines(tree.right(root));
 
@@ -191,12 +190,20 @@ public class BinaryTreePrinter< N > {
 			return allTreeLines;
 		}
 	}
-	
+
 	private static String spaces(int n) {
 		return String.join("", Collections.nCopies(n, " "));
 	}
-	
-	public static void main(String[] args) {
 
+	public static void main(String[] args) {
+		// Construct a binary tree
+		LinkedBinaryTree<Integer> bTree = new LinkedBinaryTree<>();
+		Integer[] arr = { 12, 25, 31, 58, 36, 42, 90, 62, 75 };
+		bTree.createLevelOrder(arr);
+		// construct a binary tree printer using the already constructed binary tree
+		BinaryTreePrinter<Integer> btprinter = new BinaryTreePrinter<>(bTree);
+		// Print out the result using the print method
+		System.out.print(btprinter.print());
+		System.out.println("\n***PASSED ALL TESTS***");
 	}
 }

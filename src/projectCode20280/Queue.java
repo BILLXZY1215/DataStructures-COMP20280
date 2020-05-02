@@ -1,3 +1,9 @@
+/**
+ * The {@code Queue} in this class implements an
+ * interface of a queue.
+ *
+ * @author Aonghus Lawlor & Ahmed Jouda 
+ */
 package projectCode20280;
 
 public interface Queue<E> {

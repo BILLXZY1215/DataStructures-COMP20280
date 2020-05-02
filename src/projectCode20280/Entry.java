@@ -1,3 +1,9 @@
+/**
+ * The {@code Entry} in this class implements an
+ * interface of a type entry.
+ *
+ * @author Aonghus Lawlor & Ahmed Jouda 
+ */
 package projectCode20280;
 
 /**

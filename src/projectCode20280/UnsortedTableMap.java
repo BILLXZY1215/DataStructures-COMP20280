@@ -1,8 +1,16 @@
+/**
+ * The {@code UnsortedTableMap} in this class implements an
+ * unsorted map.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * An implementation of a map using an unsorted table.
@@ -13,7 +21,8 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	private ArrayList<MapEntry<K, V>> table = new ArrayList<>();
 
 	/** Constructs an initially empty map. */
-	public UnsortedTableMap() {}
+	public UnsortedTableMap() {
+	}
 
 	// private utility
 	/** Returns the index of an entry with equal key, or -1 if none found. */
@@ -34,7 +43,9 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	 * @return number of entries in the map
 	 */
 	@Override
-	public int size() {	return table.size();}
+	public int size() {
+		return table.size();
+	}
 
 	/**
 	 * Returns the value associated with the specified key, or null if no such entry
@@ -46,7 +57,7 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	@Override
 	public V get(K key) {
 		int j = findIndex(key);
-		if (j==-1) {
+		if (j == -1) {
 			return null;
 		}
 		return table.get(j).getValue();
@@ -65,14 +76,13 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	@Override
 	public V put(K key, V value) {
 		int j = findIndex(key);
-		if (j==-1) {
+		if (j == -1) {
 			table.add(new MapEntry<>(key, value));
 			return null;
-		}
-		else {
+		} else {
 			return table.get(j).setValue(value);
 		}
-		
+
 	}
 
 	/**
@@ -91,10 +101,10 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 			return null;
 		}
 		V answer = table.get(j).getValue();
-		if (j!= n-1) {
-			table.set(j, table.get(n-1));
+		if (j != n - 1) {
+			table.set(j, table.get(n - 1));
 		}
-		table.remove(n-1);
+		table.remove(n - 1);
 		return answer;
 	}
 
@@ -102,7 +112,9 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	private class EntryIterator implements Iterator<Entry<K, V>> {
 		private int j = 0;
 
-		public boolean hasNext() {return j < table.size();}
+		public boolean hasNext() {
+			return j < table.size();
+		}
 
 		public Entry<K, V> next() {
 			if (j == table.size())
@@ -110,12 +122,16 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 			return table.get(j++);
 		}
 
-		public void remove() {throw new UnsupportedOperationException("remove not supported");}
+		public void remove() {
+			throw new UnsupportedOperationException("remove not supported");
+		}
 	} // ----------- end of nested EntryIterator class -----------
 
 	// ---------------- nested EntryIterable class ----------------
 	private class EntryIterable implements Iterable<Entry<K, V>> {
-		public Iterator<Entry<K, V>> iterator() {return new EntryIterator();}
+		public Iterator<Entry<K, V>> iterator() {
+			return new EntryIterator();
+		}
 	} // ----------- end of nested EntryIterable class -----------
 
 	/**
@@ -124,5 +140,44 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	 * @return iterable collection of the map's entries
 	 */
 	@Override
-	public Iterable<Entry<K, V>> entrySet() {return new EntryIterable();}
+	public Iterable<Entry<K, V>> entrySet() {
+		return new EntryIterable();
+	}
+
+	public String toString() {
+		String string = "" + table.toString();
+
+		return string;
+	}
+
+	public static void main(String[] args) {
+
+		// Create an unsorted table map
+		UnsortedTableMap<Integer, String> unTableMap = new UnsortedTableMap<>();
+		System.out.println("Is it empty?: " + unTableMap.isEmpty());
+		System.out.println("Size: " + unTableMap.size());
+
+		System.out.println("\nAdd a test");
+		unTableMap.put(0, "Zero");
+		System.out.println("Tree Map: " + unTableMap);
+		System.out.println("Is it empty?: " + unTableMap.isEmpty());
+		System.out.println("\nValue at key 0: " + unTableMap.get(0));
+
+		System.out.println("\nRemove key 0: " + unTableMap.remove(0));
+		System.out.println("Tree Map: " + unTableMap);
+		System.out.println("Is it empty?: " + unTableMap.isEmpty());
+
+		System.out.println("\nFill it with more nodes");
+		Random rnd = new Random();
+		int n = 16;
+		java.util.List<Integer> rands = rnd.ints(1, 1000).limit(n).distinct().boxed().collect(Collectors.toList());
+		for (Integer i : rands) {
+			unTableMap.put(i, i.toString());
+		}
+		System.out.println("Tree Map(Entry Set): " + unTableMap);
+		System.out.println("Size: " + unTableMap.size());
+
+		System.out.println("\n***PASSED ALL TESTS***");
+
+	}
 }

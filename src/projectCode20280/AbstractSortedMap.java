@@ -1,9 +1,14 @@
+/**
+ * The {@code AbstractSortedMap} abstract class to 
+ * ease the implementation of the SortedMap interface.
+ *
+ * @author Ahmed Jouda & Dr. Aonghus Lawlor
+ */
 package projectCode20280;
 
 import java.util.Comparator;
 
 /**
- * An abstract base class to ease the implementation of the SortedMap interface.
  *
  * The base class provides four means of support: 1) It defines a PQEntry class
  * as a concrete implementation of the entry interface 2) It provides an
