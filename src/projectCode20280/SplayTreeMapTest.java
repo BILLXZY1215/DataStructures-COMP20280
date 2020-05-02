@@ -24,11 +24,11 @@ class SplayTreeMapTest {
 		SplayTreeMap<Integer, String> map = new SplayTreeMap<>();
 		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 
-		for(Integer i : arr) {
-			map.put(i, Integer.toString(i));
+		for(int i = 0; i<arr.length; i++) {
+			map.put(arr[i], Integer.toString(i));
 		}
 		
-		assertEquals("[1, 2, 4, 5, 12, 15, 21, 23, 24, 26, 33, 35]", map.keySet().toString());
+		assertEquals("[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]", map.toString());
 	}
 
 	@Test
@@ -128,7 +128,13 @@ class SplayTreeMapTest {
 
 	@Test
 	void testEntrySet() {
-		fail("Not yet implemented");
+		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
+		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+
+		for(int i = 0; i<arr.length; i++) {
+			map.put(arr[i], Integer.toString(i));
+		}
+		assertEquals("[<1, 7>, <2, 10>, <4, 5>, <5, 11>, <12, 6>, <15, 2>, <21, 9>, <23, 8>, <24, 3>, <26, 1>, <33, 4>, <35, 0>]", map.entrySet().toString());
 	}
 
 	@Test
@@ -137,10 +143,11 @@ class SplayTreeMapTest {
 		//java.util.TreeMap<Integer, String> map = new java.util.TreeMap<>();
 		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 
-		for(Integer i : arr) {
-			map.put(i, Integer.toString(i));
+		for(int j = 0; j < arr.length; j++) {
+			map.put(arr[j], Integer.toString(j));
 		}
-		assertEquals("", map.toString());
+		assertEquals("[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]", map.toString());
+
 	}
 
 	@Test

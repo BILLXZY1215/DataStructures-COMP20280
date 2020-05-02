@@ -22,33 +22,33 @@ public class SplayTreeMap<K,V> extends TreeMap<K,V> {
 			Position<Entry<K, V>> parent = parent(p);
 			Position<Entry<K, V>> grand = parent(parent);
 			if (grand == null) 
-				rotate(p);
+				tree.rotate(p);
 			else if ((parent == left(grand))==(p==left(parent))) {
-				rotate(parent);
-				rotate(p);
+				tree.rotate(parent);
+				tree.rotate(p);
 			} else {
-				rotate(p);
-				rotate(p);
+				tree.rotate(p);
+				tree.rotate(p);
 			}
 			
 		}
 	  }
 
 	  /** Overrides the TreeMap rebalancing hook that is called after a node access. */
-	  @Override
+	  
 	  protected void rebalanceAccess(Position<Entry<K,V>> p) {
 		  if (isExternal(p)) p = parent(p);
 		  if(p!=null) splay(p);
 	  }
 
 	  /** Overrides the TreeMap rebalancing hook that is called after an insertion. */
-	  @Override
+	  
 	  protected void rebalanceInsert(Position<Entry<K,V>> p) {
 		  splay(p);
 	  }
 
 	  /** Overrides the TreeMap rebalancing hook that is called after a deletion. */
-	  @Override
+	  
 	  protected void rebalanceDelete(Position<Entry<K,V>> p) {
 		  if(!isRoot(p)) splay(parent(p));
 	  }

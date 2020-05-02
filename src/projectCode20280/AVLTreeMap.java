@@ -11,7 +11,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
     protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
 
-    
+
 	/** Constructs an empty map using the natural ordering of keys. */
 	public AVLTreeMap() {
 		super();
@@ -19,7 +19,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
 	/**
 	 * Constructs an empty map using the given comparator to order keys.
-	 * 
+	 *
 	 * @param comp comparator defining the order of keys in the map
 	 */
 	public AVLTreeMap(Comparator<K> comp) {
@@ -74,13 +74,11 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 	}
 
 	/** Overrides the TreeMap rebalancing hook that is called after an insertion. */
-	@Override
 	protected void rebalanceInsert(Position<Entry<K, V>> p) {
 		rebalance(p);
 	}
 
 	/** Overrides the TreeMap rebalancing hook that is called after a deletion. */
-	@Override
 	protected void rebalanceDelete(Position<Entry<K, V>> p) {
 		if (!isRoot(p)) {
 			rebalance(parent(p));
@@ -105,29 +103,37 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
 	/*
 	public String toBinaryTreeString() {
-		BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>( (LinkedBinaryTree<Entry<K, V>>) this.tree);		
-		return btp.print();	
+		BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>( (LinkedBinaryTree<Entry<K, V>>) this.tree);
+		return btp.print();
 	}
 	*/
-	
+
 	public static void main(String [] args) {
 		AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
 	//	Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
-			avl.put(3, 2);
-			avl.put(4, 5);
-		
+			//avl.put(3, 2);
+			//avl.put(4, 5);
+
 			AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
 			Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 
-			for(Integer i : arr) {
-				map.put(i, Integer.toString(i));
+			for(int i = 0; i<arr.length; i++) {
+				map.put(arr[i], Integer.toString(i));
 			}
 
+			/*(AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
+			Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 
-		System.out.println("avl: " + map);
-		
-		System.out.println(avl.remove(3));
+			for(int i = 0; i<arr.length;i++) {
 
-		System.out.println("avl: " + avl.entrySet());
+			}
+
+			map.put(arr[0], Integer.toString(0));
+			map.put(arr[1], Integer.toString(1));
+			map.put(arr[2], Integer.toString(2));
+			map.put(arr[3], Integer.toString(3));*/
+
+
+		System.out.println(map.entrySet());
 	}
 }
