@@ -120,6 +120,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
 		System.out.println("Sanity Check (is it a valid AVL): \n" + map.sanityCheck());
 		System.out.println("\nEntry Set: \n" + map.entrySet());
+		System.out.println("\nEntry Set: \n" + map.keySet().toString());
 		System.out.println("\nTo String (Includes null nodes): \n" + map.toString());
 		System.out.println("\nSize (12 expected): \n" + map.size());
 

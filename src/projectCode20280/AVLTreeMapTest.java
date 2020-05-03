@@ -30,11 +30,11 @@ class AVLTreeMapTest {
 		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
 		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
 
-		for(int i = 0; i<arr.length; i++) {
-			map.put(arr[i], Integer.toString(i));
+		for(Integer i : arr) {
+			map.put(i, Integer.toString(i));
 		}
 		
-		assertEquals("[(null), (<1, 7>), (null), (<2, 10>), (null), (<4, 5>), (null), (<5, 11>), (null), (<12, 6>), (null), (<15, 2>), (null), (<21, 9>), (null), (<23, 8>), (null), (<24, 3>), (null), (<26, 1>), (null), (<33, 4>), (null), (<35, 0>), (null)]", map.toString());
+		assertEquals("[1, 2, 4, 5, 12, 15, 21, 23, 24, 26, 33, 35]", map.keySet().toString());
 	}
 
 	@Test

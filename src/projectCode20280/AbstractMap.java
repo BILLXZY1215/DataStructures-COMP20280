@@ -95,6 +95,21 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 		public Iterator<K> iterator() {
 			return new KeyIterator();
 		}
+		@Override
+		public String toString() {
+			if (isEmpty()) {
+				return "[]";
+			}
+			Iterator<K> k = iterator(); 
+			StringBuilder newString = new StringBuilder("[");
+
+			while (k.hasNext()) {
+				newString.append(k.next());
+				newString.append(", ");
+			}
+			newString.delete(newString.length()-2, newString.length());
+			return newString + "]";
+		}
 	} // ----------- end of nested KeyIterable class -----------
 
 	/**
@@ -128,6 +143,21 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 	private class ValueIterable implements Iterable<V> {
 		public Iterator<V> iterator() {
 			return new ValueIterator();
+		}
+		@Override
+		public String toString() {
+			if (isEmpty()) {
+				return "[]";
+			}
+			Iterator<V> value = iterator(); 
+			StringBuilder newString = new StringBuilder("[");
+
+			while (value.hasNext()) {
+				newString.append(value.next());
+				newString.append(", ");
+			}
+			newString.delete(newString.length()-2, newString.length());
+			return newString + "]";
 		}
 	} // ----------- end of nested ValueIterable class -----------
 
