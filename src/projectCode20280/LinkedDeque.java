@@ -97,7 +97,7 @@ public class LinkedDeque<E> implements Deque<E> {
 		linkedDQ.addLast(66);
 		System.out.println("Updated Queue: " + linkedDQ);
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
 	}
 }

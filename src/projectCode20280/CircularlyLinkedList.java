@@ -277,7 +277,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 		ll.add(2, 25);
 		System.out.println("Updated Circular Linked List: " + ll);
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
 	}
 }

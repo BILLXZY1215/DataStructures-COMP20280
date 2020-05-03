@@ -66,6 +66,20 @@ public class ArrayQueue<E> implements Queue<E> {
 		size--;
 		return answer;
 	}
+	
+	@Override
+	public String toString() {
+		if (isEmpty()) {
+			return "[]";
+		}
+		String newString = "[" + data[0];
+
+		for (int i = 1; i < size(); i++) {
+			newString = newString + ", " + data[i];
+		}
+
+		return newString + "]";
+	}
 
 	public static void main(String[] args) {
 		// Create a queue of default capacity (10)
@@ -90,7 +104,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		System.out.println(q.first());
 		System.out.println("What is the size? (Should be 2): " + q.size());
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
 	}
 

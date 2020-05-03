@@ -177,7 +177,7 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 		System.out.println("Tree Map(Entry Set): " + unTableMap);
 		System.out.println("Size: " + unTableMap.size());
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
 	}
 }

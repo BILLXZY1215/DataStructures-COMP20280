@@ -71,6 +71,20 @@ public class ArrayStack<E> implements Stack<E> {
 			return x;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		if (isEmpty()) {
+			return "[]";
+		}
+		String newString = "[" + data[size()-1];
+
+		for (int i = size()-2; i >= 0; i--) {
+			newString = newString + ", " + data[i];
+		}
+
+		return newString + "]";
+	}
 
 	// main
 	public static void main(String[] args) {
@@ -82,6 +96,7 @@ public class ArrayStack<E> implements Stack<E> {
 		arrayStack.push(21);
 		arrayStack.push(22);
 		arrayStack.push(23);
+		System.out.println("Stack: " + arrayStack);
 		System.out.println("Is it empty? " + arrayStack.isEmpty());
 		System.out.println("Size: " + arrayStack.size());
 		System.out.println("Element at top: " + arrayStack.top());
@@ -94,7 +109,7 @@ public class ArrayStack<E> implements Stack<E> {
 		System.out.println(arrayStack.top());
 		System.out.println("Size (Should be 1): " + arrayStack.size());
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 
 	}
 }

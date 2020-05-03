@@ -40,7 +40,7 @@ public class LinkedCircularQueue<E> implements Queue<E> {
 		circularQ.rotate();
 		System.out.println("Queue: " + circularQ);
 
-		System.out.println("\n***PASSED ALL TESTS***");
+		System.out.println("\nMore detailed testing in junit file.\n***PASSED ALL TESTS***");
 	}
 
 	@Override
